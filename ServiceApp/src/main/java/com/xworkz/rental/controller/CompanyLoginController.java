@@ -54,7 +54,7 @@ public class CompanyLoginController {
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<Response> companyLogin(@Valid /* @RequestBody */ LoginDTO logindto) {
+	public ResponseEntity<Response> companyLogin(@Valid @RequestBody LoginDTO logindto) {
 		logger.info("invoking companyLoginController.companyLogin()");
 		Response response = null;
 		try {
