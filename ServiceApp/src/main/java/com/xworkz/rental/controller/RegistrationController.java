@@ -37,7 +37,7 @@ public class RegistrationController {
 	}
 
 	@PostMapping("/registration")
-	public ResponseEntity<Response> clientRegistration(@Valid RegistrationDTO registrationDTO) {
+	public ResponseEntity<Response> clientRegistration(@Valid @RequestBody RegistrationDTO registrationDTO) {
 		logger.info("invoking registrationController.clientRegistration() ");
 		Response response = null;
 		try {
