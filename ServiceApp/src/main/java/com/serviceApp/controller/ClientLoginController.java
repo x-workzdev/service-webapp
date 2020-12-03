@@ -26,8 +26,7 @@ import com.serviceApp.utility.response.Response;
 
 @RestController
 @RequestMapping("/api")
-//@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201" })
-@CrossOrigin(origins = {"https://x-workzdev.github.io"})
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201","https://x-workzdev.github.io"})
 public class ClientLoginController {
 
 	@Autowired
