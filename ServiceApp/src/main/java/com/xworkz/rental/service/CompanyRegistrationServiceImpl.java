@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.xworkz.rental.dto.CompanyRegistrationDTO;
@@ -33,30 +34,47 @@ public class CompanyRegistrationServiceImpl implements CompanyRegistrationServic
 	public Response companyRegistration(CompanyRegistrationDTO registrationDTO) {
 		logger.info("invoking CompanyRegistrationServiceImpl.companyRegistration()");
 		List<CompanyLoginEntity> companyLoginEntity = null;
-		companyLoginEntity = loginRepository.findAllByEmailId(registrationDTO.getEmailId());
-		logger.info("getting data based on mail id ");
-		if (companyLoginEntity != null) {
-			logger.info("mail id not found ");
-			CompanyLoginEntity loginEntity = new CompanyLoginEntity();
-			logger.info("checking password and conform password both are same ");
-			if (registrationDTO.getPassword().equals(registrationDTO.getCnfPassword())) {
-				logger.info("password and conform password both are same");
-				BeanUtils.copyProperties(registrationDTO, loginEntity);
-				logger.info("copying properties from dto to entity");
-				logger.info("saving data into databse");
-				loginRepository.save(loginEntity);
-				logger.info("data saved to database ");
-				logger.info("registration successfully");
-				return new Response(environment.getProperty("USER_REGISTERD"),
-						environment.getProperty("SERVER_CODE_SUCCESS"), loginEntity);
+		try {
+			companyLoginEntity = loginRepository.findAllByEmailId(registrationDTO.getEmailId());
+			logger.info("getting data based on mail id ");
+			if (companyLoginEntity != null) {
+				logger.info("mail id not found ");
+				CompanyLoginEntity loginEntity = new CompanyLoginEntity();
+				logger.info("checking password and conform password both are same ");
+				if (registrationDTO.getPassword().equals(registrationDTO.getCnfPassword())) {
+					logger.info("password and conform password both are same");
+					BeanUtils.copyProperties(registrationDTO, loginEntity);
+					logger.info("copying properties from dto to entity");
+					logger.info("saving data into databse");
+					loginRepository.save(loginEntity);
+					logger.info("data saved to database ");
+					logger.info("registration successfully");
+					return new Response(environment.getProperty("USER_REGISTERD"),
+							environment.getProperty("SERVER_CODE_SUCCESS"), loginEntity);
+				} else {
+					return new Response(environment.getProperty("INVALID_PASSWORD"),
+							environment.getProperty("SERVER_CODE_ERROR"));
+				}
 			} else {
-				return new Response(environment.getProperty("INVALID_PASSWORD"),
+				return new Response(environment.getProperty("COMPANY_FOUND"),
 						environment.getProperty("SERVER_CODE_ERROR"));
 			}
-		} else {
-			return new Response(environment.getProperty("COMPANY_FOUND"),
-					environment.getProperty("SERVER_CODE_ERROR"));
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return new Response(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
+	@Override
+	public List<CompanyLoginEntity> getAllCompanyAccount() {
+		logger.info("invoking CompanyRegistrationServiceImpl.getAllCompanyAccount()");
+		List<CompanyLoginEntity> companyLoginEntity = null;
+		try {
+			companyLoginEntity = loginRepository.findAll();
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+		return companyLoginEntity;
 	}
 
 }
