@@ -133,12 +133,17 @@ public class ClientLoginServiceImpl implements ClientLoginService {
 				logger.info("Setted status  ");
 				created = complainRepository.save(clientComplainEntity);
 				logger.info("saved clientComplainEntity()");
-				List<String> loginEntity = loginRepository.findAllByRole("ADMIN");
+				List<CompanyLoginEntity> loginEntity = loginRepository.findAllByRole("ADMIN");
+				String emailId = null;
+				for (CompanyLoginEntity companyLoginEntity : loginEntity) {
+					emailId = companyLoginEntity.getEmailId();
+					break;
+				}
 				logger.debug("get all the email id base on role = ADMIN" + loginEntity);
 				logger.info("===========================" + loginEntity);
 				String emailIdList = StringUtils.join(loginEntity, ",");
 				logger.info("======================" + emailIdList);
-				jms.sendMail(loginEntity.get(1), "Complaint raised", "complaint raised \n " + clientComplainEntity);
+				jms.sendMail(emailId, "Complaint raised", "complaint raised \n " + clientComplainEntity);
 				logger.info("sending the mail");
 			}
 			if (created != null) {

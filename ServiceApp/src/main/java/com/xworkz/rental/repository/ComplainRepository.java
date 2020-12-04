@@ -10,7 +10,7 @@ import com.xworkz.rental.entity.ClientComplainEntity;
 public interface ComplainRepository extends JpaRepository<ClientComplainEntity, String> {
 	// change this to sql query
 
-	@Query(value = "select company.* from ClientComplaint as company inner join Registration as reg on reg.ID = company.ID where reg.COMPANY_NAME= :companyName AND reg.EMAIL_ID= :emailId", nativeQuery = true)
+	@Query(value = "select company.* from client_complaint as company inner join registration as reg on reg.ID = company.ID where reg.COMPANY_NAME= :companyName AND reg.EMAIL_ID= :emailId", nativeQuery = true)
 	List<ClientComplainEntity> findAllByCompanyName(String companyName , String emailId);
 
 	ClientComplainEntity findByComplaintId(String complaintId);
