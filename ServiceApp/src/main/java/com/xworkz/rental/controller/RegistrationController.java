@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import com.xworkz.rental.dto.RegistrationDTO;
 import com.xworkz.rental.entity.RegistrationEntity;
 import com.xworkz.rental.service.RegistrationService;
@@ -37,7 +37,7 @@ public class RegistrationController {
 	}
 
 	@PostMapping("/registration")
-	public ResponseEntity<Response> clientRegistration(@Valid @RequestBody RegistrationDTO registrationDTO) {
+	public ResponseEntity<Response> clientRegistration(@Valid RegistrationDTO registrationDTO) {
 		logger.info("invoking registrationController.clientRegistration() ");
 		Response response = null;
 		try {

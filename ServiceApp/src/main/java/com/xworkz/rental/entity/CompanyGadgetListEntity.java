@@ -20,14 +20,14 @@ import lombok.ToString;
 public class CompanyGadgetListEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String companyName;
 	private String model;
 	private String serialNo;
 	private String mcType;
 	private Date dateOfAssigne;
-	private String status;//assigned/returned
+	private String status;// assigned/returned
 
 	public CompanyGadgetListEntity() {
 		System.out.println();

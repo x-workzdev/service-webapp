@@ -20,7 +20,7 @@ import lombok.ToString;
 public class CompanyLoginEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String emailId;
 	@JsonIgnore

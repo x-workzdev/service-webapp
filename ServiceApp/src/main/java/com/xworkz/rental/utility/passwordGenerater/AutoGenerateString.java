@@ -10,7 +10,7 @@ public class AutoGenerateString {
 		 return RandomStringUtils.randomAlphanumeric(8);
 	 }
 	 
-	 public static Long autoGenerateTicket() {
-		 return Long.parseLong(RandomStringUtils.randomNumeric(8));
+	 public static String autoGenerateTicket() {
+		 return RandomStringUtils.randomNumeric(8);
 	 }
 }

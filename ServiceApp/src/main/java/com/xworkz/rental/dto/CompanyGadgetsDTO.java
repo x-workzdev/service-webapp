@@ -19,3 +19,5 @@ public class CompanyGadgetsDTO {
 	private String mcType;
 	private String status;
 }
+
+

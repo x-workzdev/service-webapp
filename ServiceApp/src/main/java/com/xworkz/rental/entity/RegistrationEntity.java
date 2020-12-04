@@ -27,7 +27,7 @@ import lombok.Setter;
 public class RegistrationEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String companyName;
 	private String customerName;

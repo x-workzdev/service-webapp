@@ -20,3 +20,5 @@ public class CompanyRegistrationDTO {
 		System.out.println("invoking " + this.getClass().getSimpleName());
 	}
 }
+
+

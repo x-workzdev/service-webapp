@@ -26,7 +26,7 @@ import com.xworkz.rental.utility.response.Response;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201","https://x-workzdev.github.io" })
+@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:4201", "https://x-workzdev.github.io" })
 public class ClientLoginController {
 
 	@Autowired
@@ -39,7 +39,7 @@ public class ClientLoginController {
 	}
 
 	@PostMapping("/clientlogin")
-	public ResponseEntity<Response> clientLogin(@Valid  @RequestBody  LoginDTO loginDTO) {
+	public ResponseEntity<Response> clientLogin(@Valid @RequestBody LoginDTO loginDTO) {
 		Response response = null;
 		try {
 			logger.info("invoking clientLoginController.clientLogin()");

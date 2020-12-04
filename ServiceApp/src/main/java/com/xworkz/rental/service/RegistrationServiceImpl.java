@@ -86,7 +86,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	public Response deleteClient(String companyName) {
 		logger.info("invoking registrationServiceImpl.deleteClient()");
 		try {
-			RegistrationEntity registrationEntity = registrationRepository.findById(companyName).get();
+			RegistrationEntity registrationEntity = registrationRepository.findByCompanyName(companyName);
 			logger.info("searching for company name");
 			if (registrationEntity != null) {
 				logger.info("company found " + registrationEntity);

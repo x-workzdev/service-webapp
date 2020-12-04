@@ -22,7 +22,7 @@ import lombok.Setter;
 public class ClientComplainEntity {
 
 	@Id
-	private long complaintId;
+	private String complaintId;
 	private String model;
 	private String serialNo;
 	private String mcType;

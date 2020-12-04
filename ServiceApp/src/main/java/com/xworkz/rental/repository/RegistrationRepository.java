@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.xworkz.rental.entity.RegistrationEntity;
 
-public interface RegistrationRepository extends JpaRepository<RegistrationEntity, String> {
+public interface RegistrationRepository extends JpaRepository<RegistrationEntity, Integer> {
 
 	RegistrationEntity findByCompanyName(String companyName);
 	
