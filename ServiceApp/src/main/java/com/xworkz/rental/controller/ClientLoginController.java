@@ -84,7 +84,6 @@ public class ClientLoginController {
 			logger.error(e.getClass().getSimpleName());
 		}
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
-
 	}
 
 	@GetMapping("/viewTicketsByCompanyName/{companyName}/{emailId}")

@@ -28,7 +28,18 @@ public class JMS {
 	public void sendMail(String emailId,String subject, String msg) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom(environment.getProperty("EMAIL_ID"));
-		message.setTo(emailId);
+		message.setCc(emailId);
+		message.setSubject(subject);
+		message.setText(msg);
+		
+		mailSender.send(message);
+		
+	}
+	
+	public void sendMail(String[] emailId,String subject, String msg) {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom(environment.getProperty("EMAIL_ID"));
+		message.setCc(emailId);
 		message.setSubject(subject);
 		message.setText(msg);
 		
